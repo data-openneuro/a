@@ -7,9 +7,12 @@ on:
         description: 'OpenNeuro Accession Number'
         default: ds001378
         required: true
-      rev_pe:
-        description: 'Reverse Phase Encoding File'
-        default: ''
+      topup_eddy:
+        description: 'Topup Eddy Current Correction'
+        default: true
+        required: false
+        type: boolean
+
   workflow_call:
     inputs:
       dataset_id:
@@ -17,6 +20,11 @@ on:
         default: ds001378
         required: true
         type: string
+      topup_eddy:
+        description: 'Topup Eddy Current Correction'
+        default: true
+        required: false
+        type: boolean
 
 jobs:
   nii2src:
@@ -65,7 +73,13 @@ jobs:
               aws s3 sync --quiet --no-sign-request --region eu-west-1 s3://openneuro.org/${{ inputs.dataset_id }}/${subject} ${subject}
               mv ${subject}/fmap/* ${subject}/dwi | true
               ls ${subject}/dwi
-              ./dsi-studio/dsi_studio --action=src --bids=1 --source=./${subject}/dwi --topup_eddy=1 --output=.             
+              
+              if [ "${{ inputs.topup_eddy }}" = "true" ]; then
+                ./dsi-studio/dsi_studio --action=src --bids=1 --source=./${subject}/dwi --topup_eddy=1 --output=.
+              else
+                ./dsi-studio/dsi_studio --action=src --bids=1 --source=./${subject}/dwi --topup_eddy=0 --output=.
+              fi
+              
               gh release upload "${{ inputs.dataset_id }}" ./*.sz || gh release upload "${{ inputs.dataset_id }}" ./*.sz
               rm *.*
             fi

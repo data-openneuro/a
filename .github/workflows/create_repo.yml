@@ -1,0 +1,70 @@
+name: DSI Studio Data Hub
+on: 
+  workflow_dispatch:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds001378
+        required: true
+      create_database:
+        description: 'Create database'
+        type: boolean
+        default: true
+      run_qsdr:
+        description: 'Run QSDR'
+        type: boolean
+        default: true
+
+jobs:    
+  info:
+    uses: ./.github/workflows/add_info.yml
+    name: Access OpenNeuro
+    with:
+      dataset_id: ${{ inputs.dataset_id }} 
+  remove_old:
+    uses: ./.github/workflows/delete_file.yml
+    needs: info
+    name: Delete GZ
+    with:
+      dataset_id: ${{ inputs.dataset_id }}
+      file_ext: .gz
+  remove_old_tsv:
+    uses: ./.github/workflows/delete_file.yml
+    needs: info
+    name: Delete TSV
+    with:
+      dataset_id: ${{ inputs.dataset_id }}
+      file_ext: qc.tsv
+  nii2src:
+    uses: ./.github/workflows/nii2src.yml
+    needs: info
+    name: Call NII to SRC
+    with:
+      dataset_id: ${{ inputs.dataset_id }}      
+          
+  src_quality_check:
+    uses: ./.github/workflows/src_qc.yml
+    needs: nii2src
+    name: SRC Quality Check
+    with:
+      src_list: 'sz'
+      dataset_id: ${{ inputs.dataset_id }} 
+
+  reconstruction:
+    uses: ./.github/workflows/recon.yml
+    needs: nii2src
+    name: SRC to FIB
+    with:
+      dataset_id: ${{ inputs.dataset_id }}
+      run_qsdr: ${{ inputs.run_qsdr }}
+          
+  database_construction:
+    if: inputs.create_database == true
+    uses: ./.github/workflows/create_db.yml
+    needs: reconstruction
+    strategy:
+      matrix:
+          metrics: ['qa','dti_fa']
+    name: Create Database
+    with:
+      metrics: ${{ matrix.metrics}}

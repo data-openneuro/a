@@ -38,4 +38,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release edit ${{ inputs.dataset_id }} --title "${{ steps.data.outputs.dataset_name }}" --notes "$(cat README)" | gh release create ${{ inputs.dataset_id }} --title "${{ steps.data.outputs.dataset_name }}" --notes "$(cat README)"
+          gh release create ${{ inputs.dataset_id }} --title "${{ steps.data.outputs.dataset_name }}" --notes "$(cat README)" | gh release edit ${{ inputs.dataset_id }} --title "${{ steps.data.outputs.dataset_name }}" --notes "$(cat README)"

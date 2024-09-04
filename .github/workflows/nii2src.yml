@@ -73,7 +73,7 @@ jobs:
               
               aws s3 sync --quiet --no-sign-request --region eu-west-1 --exclude "*" --include "*dwi*" s3://openneuro.org/${1}/${subject} ${subject}
               aws s3 sync --quiet --no-sign-request --region eu-west-1 --exclude "*" --include "*fmap*" s3://openneuro.org/${1}/${subject} ${subject}
-              mv ./${subject}/fmap/* ./${subject}/dwi | true
+              mv ./${subject}/fmap/* ./${subject}/dwi || true
               
               ls ./${subject}/dwi -l
 

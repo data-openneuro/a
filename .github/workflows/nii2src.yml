@@ -86,9 +86,9 @@ jobs:
               count=1
               for src in *.sz; do
                 if [ $count -eq 1 ]; then
-                  mv "$src" "./${file}_dwi.sz"
+                  mv "$src" "./${file}_dwi.sz" || true
                 else
-                  mv "$src" "./${file}_dwi.${count}.sz"
+                  mv "$src" "./${file}_dwi.${count}.sz" || true
                 fi
                 count=$((count + 1))
               done              

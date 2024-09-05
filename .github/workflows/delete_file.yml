@@ -10,6 +10,16 @@ on:
         description: 'Keywords to search for in file names'
         default: ''
         required: true
+  workflow_call:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds000000
+        required: true
+      keywords:
+        description: 'Keywords to search for in file names'
+        default: ''
+        required: true  
 jobs:
   src_quality_check:
     name: Delete Release File

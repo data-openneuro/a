@@ -94,3 +94,13 @@
 | ds004917/ | 45 | [Probability Decision-making Task with ambiguity](https://openneuro.org/datasets/ds004917/) | 
 | ds004958/ | 33 | [The FreeSurfer Maintenance Dataset](https://openneuro.org/datasets/ds004958/) | 
 | ds004962/ | 28 | [MRI dataset evaluating the effect of head down tilt 15° on cerebral perfusion in acute ischemic experimental stroke](https://openneuro.org/datasets/ds004962/) | 
+| ds005026/ | 82 | [Hearing loss Connectome](https://openneuro.org/datasets/ds005026/) | 
+| ds005063/ | 1 | [CR DBS](https://openneuro.org/datasets/ds005063/) | 
+| ds005123/ | 108 | [Social Reward and Nonsocial Reward Processing Across the Adult Lifespan: An Interim Multi-echo fMRI and Diffusion Dataset](https://openneuro.org/datasets/ds005123/) | 
+| ds005134/ | 1 | [Sequence test for multiband DWI and magnetization transfer sequence](https://openneuro.org/datasets/ds005134/) | 
+| ds005236/ | 59 | [Effects of environmental enrichment on brain microstructure in C58 mice (adult cohort)](https://openneuro.org/datasets/ds005236/) | 
+| ds005270/ | 153 | [BOLD variability during cognitive control for an adult lifespan sample ](https://openneuro.org/datasets/ds005270/) | 
+| ds005299/ | 25 | [Maternal Brain Project](https://openneuro.org/datasets/ds005299/) | 
+| ds005364/ | 90 | [neuroCOVID MRI dWI and fMRI with reversal learning ](https://openneuro.org/datasets/ds005364/) | 
+| ds005402/ | 34 | [MPTP mouse](https://openneuro.org/datasets/ds005402/) | 
+

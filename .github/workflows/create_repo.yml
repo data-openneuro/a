@@ -29,7 +29,6 @@ jobs:
     needs: nii2src
     name: SRC Quality Check
     with:
-      src_list: 'sz'
       dataset_id: ${{ inputs.dataset_id }} 
 
   reconstruction:

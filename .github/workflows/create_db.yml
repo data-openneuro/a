@@ -1,0 +1,56 @@
+name: STEP C1 Create Database
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds001378
+        required: true
+      metrics:
+        description: 'metrics to extract'
+        default: 'qa'
+        required: true        
+  workflow_call:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds001378
+        required: true
+        type: string
+      metrics:
+        description: 'metrics to extract'
+        default: 'qa'
+        required: true        
+        type: string
+jobs:
+  create_database:
+    name: Create Database
+    runs-on: ubuntu-20.04
+    steps:     
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Check If Done
+        run: |
+          wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz || true
+          if [ ! -f "${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz" ]; then
+            echo "file_exists=false" >> $GITHUB_ENV
+          else
+            echo "file_exists=true" >> $GITHUB_ENV
+          fi    
+      - name: Download and Extract DSI Studio
+        if: env.file_exists == 'false'
+        run: |
+          curl -sL "https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2004.zip" | jar x && chmod 777 ./dsi-studio/dsi_studio          
+      - name: Database Construction
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: env.file_exists == 'false'
+        run: |        
+          aws s3 sync --no-sign-request --region eu-west-1 --exclude "*" --include "participants.tsv" s3://openneuro.org/${{ inputs.dataset_id }} .
+          aws s3 sync --no-sign-request --region eu-west-1 --exclude "*" --include "README" s3://openneuro.org/${{ inputs.dataset_id }} .
+          echo -e "\nhttps://openneuro.org/datasets/${{ inputs.dataset_id }}" >> README
+          
+          gh release download <repo-owner>/<repo-name> --pattern "*.qsdr.fz" --output .
+          ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --intro=README --demo=participants.tsv --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz || ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz --intro=README 
+          gh release upload "${{ inputs.dataset_id }}" ${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz

@@ -2,7 +2,6 @@
 
 |       DS NUMBER       |       DWI COUNT       |               NAME            |
 |-----------------|-----------------------|-------------------------------|
-| ds000113 | 20 | [Forrest Gump](https://openneuro.org/datasets/ds000113/) | 
 | ds001226 | 36 | [BTC_preop](https://openneuro.org/datasets/ds001226/) | 
 | ds001378 | 50 | [SCA2 Diffusion Tensor Imaging](https://openneuro.org/datasets/ds001378/) | 
 | ds001743 | 12 | [Unilateral Glaucoma 3T dMRI](https://openneuro.org/datasets/ds001743/) | 
@@ -11,16 +10,12 @@
 | ds002080 | 29 | [BTC_postop](https://openneuro.org/datasets/ds002080/) | 
 | ds002185 | 22 | [Human Olfaction Without Apparent Olfactory Bulbs](https://openneuro.org/datasets/ds002185/) | 
 | ds002685 | 13 | [IBC](https://openneuro.org/datasets/ds002685/) | 
-| ds002785 | 211 | [AOMIC-PIOP1](https://openneuro.org/datasets/ds002785/) | 
-| ds002790 | 226 | [AOMIC-PIOP2](https://openneuro.org/datasets/ds002790/) | 
 | ds003037 | 149 | [SUDMEX_TMS: The Mexican dataset of an rTMS clinical trial on cocaine use disorder patients.](https://openneuro.org/datasets/ds003037/) |
-| ds003097/ | 925 | [AOMIC-ID1000](https://openneuro.org/datasets/ds003097/) | 
 | ds003171/ | 17 | [Modeling an auditory stimulated brain under altered states of consciousness using the generalized ising model](https://openneuro.org/datasets/ds003171/) | 
 | ds003346/ | 136 | [SUDMEX_CONN: The Mexican dataset of cocaine use disorder patients.](https://openneuro.org/datasets/ds003346/) | 
 | ds003599/ | 133 | [White matter deficits in cocaine use disorder V1.0](https://openneuro.org/datasets/ds003599/) | 
 | ds004161/ | 48 | [Turone Sheep Chronic Stress (TSCS)](https://openneuro.org/datasets/ds004161/) | 
 | ds004498/ | 7 | [Perinatal Stroke](https://openneuro.org/datasets/ds004498/) | 
-| ds004605/ | 132 | [Emotion and Development Branch Phenotyping and DTI (2012-2017)](https://openneuro.org/datasets/ds004605/) | 
 | ds004632/ | 27 | [DTI readouts for designing a preclinical stem-cell therapy trial in experimental stroke](https://openneuro.org/datasets/ds004632/) | 
 | ds004717/ | 42 | [Utilizing Amide Proton Transfer Technique to Characterise Diffuse Gliomas Based on WHO 2021 Classification of CNS Tumors](https://openneuro.org/datasets/ds004717/) | 
 | ds004884/ | 613 | [Aphasia Recovery Cohort (ARC) Dataset](https://openneuro.org/datasets/ds004884/) | 

@@ -54,3 +54,4 @@ jobs:
           gh release download ${{ inputs.dataset_id }} --pattern "*.qsdr.fz" --output .
           ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --intro=README --demo=participants.tsv --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz || ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz --intro=README 
           gh release upload "${{ inputs.dataset_id }}" ${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz
+          gh release upload "${{ inputs.dataset_id }}" participants.tsv || true

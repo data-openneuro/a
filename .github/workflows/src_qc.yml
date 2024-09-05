@@ -36,6 +36,8 @@ jobs:
           curl -sL "https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2004.zip" | jar x && chmod 777 ./dsi-studio/dsi_studio          
       - name: Get Subject List
         if: env.file_exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |        
           files=($(gh release view --repo=${GITHUB_REPOSITORY} | jq '.assets[] | select(.name | endswith(".sz")) | .name' | tr -d '"'))
           for file in "${files[@]}"; do
@@ -57,11 +59,5 @@ jobs:
           done
           cat all_qc.tsv >> $GITHUB_STEP_SUMMARY
           mv all_qc.tsv qc.tsv
-              
-      - name: Create Release
-        if: env.file_exists == 'false'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
           gh release upload "${{ inputs.dataset_id }}" qc.tsv
         

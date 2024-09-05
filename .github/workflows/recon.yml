@@ -47,9 +47,6 @@ jobs:
             file=$(echo $subject | tr '/' '_')
       
 
-            anat_files=($(aws s3 ls --no-sign-request --region eu-west-1 s3://openneuro.org/${{ inputs.dataset_id }}/${subject}/anat/ | grep .nii.gz | awk '{print $4}'))
-            anat_files=($(printf "https://s3.amazonaws.com/openneuro.org/${{ inputs.dataset_id }}/${subject}/anat/%s," "${anat_files[@]}"))
-            anat_files=${anat_files%,}
             
             if curl --head --silent --fail https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.qsdr.fz; then
               echo "${file}_dwi.qsdr.fz exists, skip"
@@ -59,6 +56,12 @@ jobs:
               if curl --head --silent --fail $url; then
                 wget -q $url
                 (wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.2.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.3.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.4.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.5.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.6.sz) || true
+                
+                anat_files=($(aws s3 ls --no-sign-request --region eu-west-1 s3://openneuro.org/${{ inputs.dataset_id }}/${subject}/anat/ | grep .nii.gz | awk '{print $4}'))
+                anat_files=($(printf "https://s3.amazonaws.com/openneuro.org/${{ inputs.dataset_id }}/${subject}/anat/%s," "${anat_files[@]}"))
+                anat_files=${anat_files%,}
+            
+                
                 ./dsi-studio/dsi_studio --action=rec --source=*.sz --output=*.gqi.fz --other_image="${anat_files}"
                 if [ "${{ inputs.run_qsdr }}" = true ]; then
                   ./dsi-studio/dsi_studio --action=rec --source=*.sz --output=*.qsdr.fz --method=7

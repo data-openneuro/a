@@ -39,7 +39,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |        
-          files=($(gh release view --repo=${GITHUB_REPOSITORY} | jq '.assets[] | select(.name | endswith(".sz")) | .name' | tr -d '"'))
+          files=($(curl https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${{ inputs.dataset_id }} | jq '.assets[] | select(.name | endswith(".sz")) | .name' | tr -d '"'))
           for file in "${files[@]}"; do
             echo "Processing $file"
             url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/$file"

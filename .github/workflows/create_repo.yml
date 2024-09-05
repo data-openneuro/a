@@ -6,10 +6,6 @@ on:
         description: 'OpenNeuro Accession Number'
         default: ds001378
         required: true
-      create_database:
-        description: 'Create database'
-        type: boolean
-        default: true
       run_qsdr:
         description: 'Run QSDR'
         type: boolean
@@ -21,20 +17,6 @@ jobs:
     name: Access OpenNeuro
     with:
       dataset_id: ${{ inputs.dataset_id }} 
-  remove_old:
-    uses: ./.github/workflows/delete_file.yml
-    needs: info
-    name: Delete GZ
-    with:
-      dataset_id: ${{ inputs.dataset_id }}
-      file_ext: .gz
-  remove_old_tsv:
-    uses: ./.github/workflows/delete_file.yml
-    needs: info
-    name: Delete TSV
-    with:
-      dataset_id: ${{ inputs.dataset_id }}
-      file_ext: qc.tsv
   nii2src:
     uses: ./.github/workflows/nii2src.yml
     needs: info
@@ -59,7 +41,7 @@ jobs:
       run_qsdr: ${{ inputs.run_qsdr }}
           
   database_construction:
-    if: inputs.create_database == true
+    if: inputs.run_qsdr == true
     uses: ./.github/workflows/create_db.yml
     needs: reconstruction
     strategy:

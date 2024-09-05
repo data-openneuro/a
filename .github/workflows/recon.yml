@@ -51,14 +51,14 @@ jobs:
             anat_files=($(printf "https://s3.amazonaws.com/openneuro.org/${{ inputs.dataset_id }}/${subject}/anat/%s," "${anat_files[@]}"))
             anat_files=${anat_files%,}
             
-            if curl --head --silent --fail https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.qsdr.fz; then
+            if curl --head --silent --fail https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.qsdr.fz; then
               echo "${file}_dwi.qsdr.fz exists, skip"
             else
-              url="https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.sz"
+              url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.sz"
               echo "download ${url} for reconstruction"
               if curl --head --silent --fail $url; then
                 wget -q $url
-                (wget -q https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.2.sz && wget -q https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.3.sz && wget -q https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.4.sz && wget -q https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.5.sz && wget -q https://github.com/frankyeh/data-openneuro/releases/download/${{ inputs.dataset_id }}/${file}_dwi.6.sz) || true
+                (wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.2.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.3.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.4.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.5.sz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.6.sz) || true
                 ./dsi-studio/dsi_studio --action=rec --source=*.sz --output=*.gqi.fz --other_image="${anat_files}"
                 if [ "${{ inputs.run_qsdr }}" = true ]; then
                   ./dsi-studio/dsi_studio --action=rec --source=*.sz --output=*.qsdr.fz --method=7

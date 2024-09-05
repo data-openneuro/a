@@ -71,4 +71,26 @@
 | ds004146/ | 718 | [Queensland Twin Adolescent Brain (QTAB)](https://openneuro.org/datasets/ds004146/) | 
 | ds004161/ | 48 | [Turone Sheep Chronic Stress (TSCS)](https://openneuro.org/datasets/ds004161/) | 
 | ds004215/ | 249 | [The NIMH Healthy Research Volunteer Dataset](https://openneuro.org/datasets/ds004215/) | 
-
+| ds004299/ | 247 | [Characterizing habit learning in the human brain at the individual and group levels: a multi-modal MRI study](https://openneuro.org/datasets/ds004299/) | 
+| ds004305/ | 32 | [Mapping neuroinflammation in vivo with diffusion-MRI in rats given a systemic lipopolysaccharide challenge](https://openneuro.org/datasets/ds004305/) | 
+| ds004441/ | 28 | [Rat_diffusion_STZ](https://openneuro.org/datasets/ds004441/) | 
+| ds004498/ | 7 | [Perinatal Stroke](https://openneuro.org/datasets/ds004498/) | 
+| ds004513/ | 29 | [The energetic costs of the human connectome](https://openneuro.org/datasets/ds004513/) | 
+| ds004581/ | 29 | [ Brain Differences in Monolingual and Highly Proficient Multilingual Speakers](https://openneuro.org/datasets/ds004581/) | 
+| ds004605/ | 132 | [Emotion and Development Branch Phenotyping and DTI (2012-2017)](https://openneuro.org/datasets/ds004605/) | 
+| ds004632/ | 27 | [DTI readouts for designing a preclinical stem-cell therapy trial in experimental stroke](https://openneuro.org/datasets/ds004632/) | 
+| ds004640/ | 2 | [Sustaining wakefulness: Brainstem connectivity in human consciousness](https://openneuro.org/datasets/ds004640/) | 
+| ds004666/ | 3 | [EDDEN: Evaluation of Diffusion MRI DENoising](https://openneuro.org/datasets/ds004666/) | 
+| ds004712/ | 80 | [ON-Harmony: A resource for development and comparison of multimodal brain 3T MRI harmonisation approaches](https://openneuro.org/datasets/ds004712/) | 
+| ds004717/ | 42 | [Utilizing Amide Proton Transfer Technique to Characterise Diffuse Gliomas Based on WHO 2021 Classification of CNS Tumors](https://openneuro.org/datasets/ds004717/) | 
+| ds004737/ | 20 | [CS-DSI](https://openneuro.org/datasets/ds004737/) | 
+| ds004742/ | 1 | [White matter tract](https://openneuro.org/datasets/ds004742/) | 
+| ds004744/ | 17 | [White matter tract and peaks](https://openneuro.org/datasets/ds004744/) | 
+| ds004765/ | 46 | [language fMRI](https://openneuro.org/datasets/ds004765/) | 
+| ds004856/ | 955 | [The Dallas Lifespan Brain Study](https://openneuro.org/datasets/ds004856/) | 
+| ds004884/ | 613 | [Aphasia Recovery Cohort (ARC) Dataset](https://openneuro.org/datasets/ds004884/) | 
+| ds004889/ | 1715 | [Stroke Outcome Optimization Project (SOOP)](https://openneuro.org/datasets/ds004889/) | 
+| ds004910/ | 134 | [An open relaxation-diffusion MRI dataset in neurosurgical studies](https://openneuro.org/datasets/ds004910/) | 
+| ds004917/ | 45 | [Probability Decision-making Task with ambiguity](https://openneuro.org/datasets/ds004917/) | 
+| ds004958/ | 33 | [The FreeSurfer Maintenance Dataset](https://openneuro.org/datasets/ds004958/) | 
+| ds004962/ | 28 | [MRI dataset evaluating the effect of head down tilt 15° on cerebral perfusion in acute ischemic experimental stroke](https://openneuro.org/datasets/ds004962/) | 

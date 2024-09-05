@@ -1,4 +1,4 @@
-# OpenNeuro Preprocessed Data
+# OpenNeuro Brain Diseases Preprocessed Data
 
 |       DS NUMBER       |       DWI COUNT       |               NAME            |
 |-----------------|-----------------------|-------------------------------|

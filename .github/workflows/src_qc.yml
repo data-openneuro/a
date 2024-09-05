@@ -37,7 +37,7 @@ jobs:
       - name: Get Subject List
         if: env.file_exists == 'false'
         run: |        
-          files=($(gh release view --repo=${GITHUB_REPOSITORY} --latest --json | jq '.assets[] | select(.name | endswith(".sz")) | .name' | tr -d '"'))
+          files=($(gh release view --repo=${GITHUB_REPOSITORY} | jq '.assets[] | select(.name | endswith(".sz")) | .name' | tr -d '"'))
           for file in "${files[@]}"; do
             echo "Processing $file"
             url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/$file"

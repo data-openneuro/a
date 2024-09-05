@@ -18,10 +18,8 @@
 | ds003171/ | 17 | [Modeling an auditory stimulated brain under altered states of consciousness using the generalized ising model](https://openneuro.org/datasets/ds003171/) | 
 | ds003346/ | 136 | [SUDMEX_CONN: The Mexican dataset of cocaine use disorder patients.](https://openneuro.org/datasets/ds003346/) | 
 | ds003599/ | 133 | [White matter deficits in cocaine use disorder V1.0](https://openneuro.org/datasets/ds003599/) | 
-| ds004078/ | 12 | [A synchronized multimodal neuroimaging dataset to study brain language processing](https://openneuro.org/datasets/ds004078/) | 
 | ds004161/ | 48 | [Turone Sheep Chronic Stress (TSCS)](https://openneuro.org/datasets/ds004161/) | 
 | ds004498/ | 7 | [Perinatal Stroke](https://openneuro.org/datasets/ds004498/) | 
-| ds004513/ | 29 | [The energetic costs of the human connectome](https://openneuro.org/datasets/ds004513/) | 
 | ds004605/ | 132 | [Emotion and Development Branch Phenotyping and DTI (2012-2017)](https://openneuro.org/datasets/ds004605/) | 
 | ds004632/ | 27 | [DTI readouts for designing a preclinical stem-cell therapy trial in experimental stroke](https://openneuro.org/datasets/ds004632/) | 
 | ds004717/ | 42 | [Utilizing Amide Proton Transfer Technique to Characterise Diffuse Gliomas Based on WHO 2021 Classification of CNS Tumors](https://openneuro.org/datasets/ds004717/) | 

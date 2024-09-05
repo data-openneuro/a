@@ -1,0 +1,33 @@
+name: Delete Files
+on:
+  workflow_dispatch:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds000000
+        required: true
+      keywords:
+        description: 'Keywords to search for in file names'
+        default: ''
+        required: true
+jobs:
+  src_quality_check:
+    name: Delete Release File
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Get Subject List
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          files=($(curl https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${{ inputs.dataset_id }} | jq '.assets[] | .name' | tr -d '"'))
+          keywords=(${{ inputs.keywords }})
+          for file in "${files[@]}"; do
+            for keyword in "${keywords[@]}"; do
+              if [[ $file == *$keyword* ]]; then
+                echo "Deleting $file"
+                gh release delete-asset ${{ inputs.dataset_id }} ${file}
+              fi
+            done
+          done

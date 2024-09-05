@@ -46,7 +46,7 @@ jobs:
             if curl --head --silent --fail $url; then
               wget -q $url
               ./dsi-studio/dsi_studio --action=qc --source=.
-              if [ -f "all_qc.txt" ]; then
+              if [ -f "all_qc.tsv" ]; then
                 sed -n '2,$p' qc.tsv >> all_qc.tsv
               else
                 head -n 2 qc.tsv > all_qc.tsv

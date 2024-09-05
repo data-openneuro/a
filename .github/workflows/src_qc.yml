@@ -1,0 +1,72 @@
+name: STEP T2a SRC QC
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds001378
+        required: true
+  workflow_call:
+    inputs:
+      dataset_id:
+        description: 'OpenNeuro Accession Number'
+        default: ds001378
+        required: true
+        type: string
+jobs:
+  src_quality_check:
+    name: SRC Quality Check
+    runs-on: ubuntu-20.04
+    steps:     
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Check Files
+        run: |
+          if curl --head --silent --fail https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${{ inputs.src_list }}_qc.txt; then
+           ${{ matrix.files }} echo "file_exists=true" >> $GITHUB_ENV
+            wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${{ inputs.src_list }}_qc.txt
+            cat ${{ inputs.src_list }}_qc.txt >> $GITHUB_STEP_SUMMARY
+          else
+            echo "file_exists=false" >> $GITHUB_ENV
+          fi
+      - name: Get Subject List
+        if: env.file_exists == 'false'
+        id: data
+        run: |
+          SUBJECTS=$(aws s3 ls --no-sign-request --region eu-west-1 s3://openneuro.org/${{ inputs.dataset_id }} --recursive | grep '${{ inputs.dataset_id }}/sub' | grep '/dwi/' | grep 'nii.gz' | awk '{print $NF}' | awk -F'/dwi/' '{print $1}' | awk -F'/sub-' '/sub-/ {print "sub-" $2}' | sort -u | tr '\n' ' ')
+          echo "subjects=$SUBJECTS" >> $GITHUB_OUTPUT   
+      - name: Download and Extract DSI Studio
+        if: env.file_exists == 'false'
+        run: |
+          curl -sL "https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2004.zip" | jar x && chmod 777 ./dsi-studio/dsi_studio          
+      - name: Get Subject List
+        if: env.file_exists == 'false'
+        run: |        
+          files=($(echo "${{ steps.data.outputs.subjects }}" | tr '/' '_'))
+          for file in "${files[@]}"; do
+            echo "Processing $file"
+            url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.${{ inputs.src_list }}"
+            if curl --head --silent --fail $url; then
+              wget -q $url
+              (wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.2.src.gz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.3.src.gz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.4.src.gz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.5.src.gz && wget -q https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.6.src.gz) || true
+              ./dsi-studio/dsi_studio --action=qc --source=.
+              if [ -f "${{ inputs.src_list }}_qc.txt" ]; then
+                sed -n '2,$p' qc.txt >> ${{ inputs.src_list }}_qc.txt
+              else
+                head -n 2 qc.txt > ${{ inputs.src_list }}_qc.txt
+              fi
+              rm *.src.gz
+            else
+              echo "cannot find $url" > ${{ inputs.src_list }}_qc.txt
+            fi
+          done
+          cat ${{ inputs.src_list }}_qc.txt >> $GITHUB_STEP_SUMMARY
+          
+      - name: Create Release
+        if: env.file_exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ inputs.dataset_id }}" ${{ inputs.src_list }}_qc.txt
+        

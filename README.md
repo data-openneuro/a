@@ -15,7 +15,6 @@
 | ds003599/ | 133 | [White matter deficits in cocaine use disorder V1.0](https://openneuro.org/datasets/ds003599/) | 
 | ds004161/ | 48 | [Turone Sheep Chronic Stress (TSCS)](https://openneuro.org/datasets/ds004161/) | 
 | ds004498/ | 7 | [Perinatal Stroke](https://openneuro.org/datasets/ds004498/) | 
-| ds004632/ | 27 | [DTI readouts for designing a preclinical stem-cell therapy trial in experimental stroke](https://openneuro.org/datasets/ds004632/) | 
 | ds004717/ | 42 | [Utilizing Amide Proton Transfer Technique to Characterise Diffuse Gliomas Based on WHO 2021 Classification of CNS Tumors](https://openneuro.org/datasets/ds004717/) | 
 | ds004884/ | 613 | [Aphasia Recovery Cohort (ARC) Dataset](https://openneuro.org/datasets/ds004884/) | 
 | ds004889/ | 1715 | [Stroke Outcome Optimization Project (SOOP)](https://openneuro.org/datasets/ds004889/) | 

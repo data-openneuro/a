@@ -9,7 +9,6 @@
 | ds001928 | 40 | [Functional Connectivity of Music-Induced Analgesia in Fibromyalgia](https://openneuro.org/datasets/ds001928/) | 
 | ds002080 | 29 | [BTC_postop](https://openneuro.org/datasets/ds002080/) | 
 | ds002185 | 22 | [Human Olfaction Without Apparent Olfactory Bulbs](https://openneuro.org/datasets/ds002185/) | 
-| ds002685 | 13 | [IBC](https://openneuro.org/datasets/ds002685/) | 
 | ds003037 | 149 | [SUDMEX_TMS: The Mexican dataset of an rTMS clinical trial on cocaine use disorder patients.](https://openneuro.org/datasets/ds003037/) |
 | ds003171/ | 17 | [Modeling an auditory stimulated brain under altered states of consciousness using the generalized ising model](https://openneuro.org/datasets/ds003171/) | 
 | ds003346/ | 136 | [SUDMEX_CONN: The Mexican dataset of cocaine use disorder patients.](https://openneuro.org/datasets/ds003346/) | 

@@ -49,3 +49,4 @@ jobs:
     name: Create Database
     with:
       metrics: ${{ matrix.metrics}}
+      dataset_id: ${{ inputs.dataset_id }} 

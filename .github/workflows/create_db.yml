@@ -51,7 +51,7 @@ jobs:
           aws s3 sync --no-sign-request --region eu-west-1 --exclude "*" --include "README" s3://openneuro.org/${{ inputs.dataset_id }} .
           echo -e "\nhttps://openneuro.org/datasets/${{ inputs.dataset_id }}" >> README
           
-          gh release download ${{ inputs.dataset_id }} --pattern "*.qsdr.fz" --output .
+          gh release download ${{ inputs.dataset_id }} --pattern "*.qsdr.fz"
           ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --intro=README --demo=participants.tsv --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz || ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz --intro=README 
           gh release upload "${{ inputs.dataset_id }}" ${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fib.gz
           gh release upload "${{ inputs.dataset_id }}" participants.tsv || true

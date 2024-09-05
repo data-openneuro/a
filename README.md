@@ -8,7 +8,6 @@
 | ds001907 | 16 | [ANT: Healthy aging and Parkinson's disease](https://openneuro.org/datasets/ds001907/) | 
 | ds001928 | 40 | [Functional Connectivity of Music-Induced Analgesia in Fibromyalgia](https://openneuro.org/datasets/ds001928/) | 
 | ds002080 | 29 | [BTC_postop](https://openneuro.org/datasets/ds002080/) | 
-| ds002185 | 22 | [Human Olfaction Without Apparent Olfactory Bulbs](https://openneuro.org/datasets/ds002185/) | 
 | ds003037 | 149 | [SUDMEX_TMS: The Mexican dataset of an rTMS clinical trial on cocaine use disorder patients.](https://openneuro.org/datasets/ds003037/) |
 | ds003346/ | 136 | [SUDMEX_CONN: The Mexican dataset of cocaine use disorder patients.](https://openneuro.org/datasets/ds003346/) | 
 | ds003599/ | 133 | [White matter deficits in cocaine use disorder V1.0](https://openneuro.org/datasets/ds003599/) | 

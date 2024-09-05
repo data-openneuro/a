@@ -66,7 +66,7 @@ jobs:
             subject=${subjects[i]}
             file=$(echo ${subject} | tr '/' '_')
             echo "Processing $file"
-            if curl --head --silent --fail https://github.com/$GITHUB_ACTOR/$GITHUB_REPOSITORY/releases/download/${{ inputs.dataset_id }}/${file}_dwi.sz; then
+            if curl --head --silent --fail https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.dataset_id }}/${file}_dwi.sz; then
               echo "$file exists."
             else
               echo "Downloading and processing ${subject}"

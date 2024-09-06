@@ -17,7 +17,6 @@
 | ds004884/ | 613 | [Aphasia Recovery Cohort (ARC) Dataset](https://openneuro.org/datasets/ds004884/) | 
 | ds004889/ | 1715 | [Stroke Outcome Optimization Project (SOOP)](https://openneuro.org/datasets/ds004889/) | 
 | ds004910/ | 134 | [An open relaxation-diffusion MRI dataset in neurosurgical studies](https://openneuro.org/datasets/ds004910/) | 
-| ds004962/ | 28 | [MRI dataset evaluating the effect of head down tilt 15° on cerebral perfusion in acute ischemic experimental stroke](https://openneuro.org/datasets/ds004962/) | 
 | ds005026/ | 82 | [Hearing loss Connectome](https://openneuro.org/datasets/ds005026/) | 
 | ds005063/ | 1 | [CR DBS](https://openneuro.org/datasets/ds005063/) | 
 

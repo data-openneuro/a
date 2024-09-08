@@ -95,7 +95,7 @@ jobs:
               done              
               
               gh release upload "${{ inputs.dataset_id }}" ./release/*.sz || gh release upload "${{ inputs.dataset_id }}" ./release/*.sz
-              rm *.*
+              rm *.* || true
               rm -fr ./release
             fi
           done

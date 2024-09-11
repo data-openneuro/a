@@ -9,7 +9,7 @@ on:
         required: true
       metrics:
         description: 'metrics to extract'
-        default: 'qa'
+        default: 'dti_fa'
         required: true        
   workflow_call:
     inputs:
@@ -20,7 +20,7 @@ on:
         type: string
       metrics:
         description: 'metrics to extract'
-        default: 'qa'
+        default: 'dti_fa'
         required: true        
         type: string
 jobs:
@@ -52,6 +52,6 @@ jobs:
           echo -e "\nhttps://openneuro.org/datasets/${{ inputs.dataset_id }}" >> README
           
           gh release download ${{ inputs.dataset_id }} --pattern "*.qsdr.fz"
-          ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --intro=README --demo=participants.tsv --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fz || ./dsi-studio/dsi_studio --action=atl --source=*.fz --cmd=db --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fz --intro=README 
+          ./dsi-studio/dsi_studio --action=atl --source=*.fz --index_name=${{inputs.metrics}} --cmd=db --intro=README --demo=participants.tsv --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fz || ./dsi-studio/dsi_studio --action=atl --source=*.fz --index_name=${{inputs.metrics}} --cmd=db --output=${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fz --intro=README 
           gh release upload "${{ inputs.dataset_id }}" ${{ inputs.dataset_id }}.${{inputs.metrics}}.db.fz
           gh release upload "${{ inputs.dataset_id }}" participants.tsv || true
